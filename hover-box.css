@@ -1,164 +1,151 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2820
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
-{\colortbl;\red255\green255\blue255;\red27\green27\blue27;\red255\green255\blue255;}
-{\*\expandedcolortbl;;\cssrgb\c14118\c14118\c14118;\cssrgb\c100000\c100000\c100000;}
-\margl1440\margr1440\vieww42660\viewh22700\viewkind0
-\pard\tx720\tx1440\tx1728\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 /*     
-\f1\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
-Scalable Box with Hover Effects\
-   This code allows for independent page use of the scalable Hover Boxes. \
-   Code includes override for page width, use of this code will trigger the \
-   wide size content to supersede any global page widths. A linkrel should be called\
-   Prior to any HTML code within the container.\
+/* 
+   Scalable Box with Hover Effects
+   This code allows for independent page use of the scalable Hover Boxes. 
+   Code includes override for page width, use of this code will trigger the 
+   wide size content to supersede any global page widths. A linkrel should be called
+   Prior to any HTML code within the container.
 */
-\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 \
-\
-\
-\
-        .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) \{\
-            max-width: var(--wp--style--global--wide-size); /* Updated width override */\
-        \}\
-        :root \{\
-            --box-gap: 20px;\
-            --box-border-radius: 25px;\
-            --inner-box-border-radius: 30px;\
-            --inner-box-bg-color: #EDF0F4;\
-            --title-color: #003e7e;\
-            --arrow-color: #003e7e;\
-            --arrow-expanded-color: #ef9021;\
-            --max-container-width: 1200px;\
-            --max-box-width: 31%; /* Default max box width */\
-        \}\
-        .display-box-wrapper \{\
-            display: flex;\
-            flex-wrap: wrap;\
-            gap: var(--box-gap);\
-            padding: 20px;\
-            justify-content: flex-start; /* Left justify the boxes */\
-            max-width: var(--max-container-width);\
-            width: 100%;\
-            margin: 0 auto; /* Center the wrapper */\
-        \}\
-        .container \{\
-            position: relative;\
-            aspect-ratio: 1;\
-            overflow: hidden;\
-            border-radius: var(--box-border-radius);\
-            max-width: var(--max-box-width);\
-            width: 100%;\
-        \}\
-        .background-image \{\
-            position: absolute;\
-            top: 0;\
-            left: 0;\
-            width: 100%;\
-            height: 100%;\
-            background-size: cover;\
-            background-position: center;\
-            transition: transform 1.5s, filter 1.5s;\
-            border-radius: var(--box-border-radius);\
-        \}\
-        .inner-box \{\
-            position: absolute;\
-            bottom: 20px;\
-            left: 20px;\
-            right: 20px;\
-            background-color: var(--inner-box-bg-color);\
-            padding: 20px;\
-            transition: height 2s, padding 2s, all 1.5s;\
-            display: flex;\
-            align-items: center;\
-            justify-content: space-between;\
-            border-radius: var(--inner-box-border-radius);\
-            height: 30px;\
-            overflow: hidden;\
-        \}\
-        .inner-box.title-only \{\
-            height: 30px;\
-            transition: none;\
-        \}\
-        .inner-box .title \{\
-            font-weight: bold;\
-            color: var(--title-color);\
-            margin: 0;\
-            line-height: 30px;\
-            padding-left: 5px;\
-            font-size: 1em;\
-            padding-bottom: 5px;\
-        \}\
-        .inner-box .content \{\
-            display: none;\
-            white-space: nowrap;\
-            overflow: hidden;\
-            text-overflow: ellipsis;\
-            max-width: calc(100% - 49px);\
-            transition: max-width 1.5s;\
-            padding-left: 2px;\
-            padding-right: 12px;\
-        \}\
-        .inner-box .arrow \{\
-            position: absolute;\
-            bottom: 10px;\
-            right: 10px;\
-            width: 50px;\
-            height: 50px;\
-            display: flex;\
-            align-items: center;\
-            justify-content: center;\
-            flex-shrink: 0;\
-            color: var(--arrow-color);\
-        \}\
-        .inner-box .arrow i \{\
-            font-size: 35px;\
-        \}\
-        .container:hover .background-image,\
-        .container.expanded .background-image \{\
-            transform: scale(1.1);\
-            filter: blur(5px);\
-        \}\
-        .container.expanded .inner-box \{\
-            max-width: calc(100% - 40px);\
-            height: auto;\
-            padding: 15px 20px;\
-        \}\
-        .container.expanded .inner-box .content \{\
-            display: block;\
-            white-space: normal;\
-        \}\
-        .container.expanded .inner-box .arrow \{\
-            color: var(--arrow-expanded-color);\
-        \}\
-        .container.title-only:hover .inner-box,\
-        .container.title-only.expanded .inner-box \{\
-            height: 30px;\
-            padding: 20px;\
-        \}\
-        @media (max-width: 1024px) \{\
-            .container \{\
-                max-width: 44%; /* Max width for tablets */\
-                min-width: 350px; /* Minimum width for tablets */\
-            \}\
-            .inner-box .title \{\
-                font-size: 0.9em;\
-            \}\
-            .inner-box .content \{\
-                font-size: 0.9em;\
-            \}\
-        \}\
-        @media (max-width: 768px) \{\
-            .container \{\
-                max-width: 100%; /* Max width for mobile devices */\
-                min-width: 350px; /* Minimum width for mobile devices */\
-            \}\
-            .inner-box .title \{\
-                font-size: 1.1em;\
-            \}\
-            .inner-box .content \{\
-                font-size: 1em;\
-            \}\
-        \}\
-}
+
+        .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+            max-width: var(--wp--style--global--wide-size); /* Updated width override */
+        }
+        :root {
+            --box-gap: 20px;
+            --box-border-radius: 25px;
+            --inner-box-border-radius: 30px;
+            --inner-box-bg-color: #EDF0F4;
+            --title-color: #003e7e;
+            --arrow-color: #003e7e;
+            --arrow-expanded-color: #ef9021;
+            --max-container-width: 1200px;
+            --max-box-width: 31%; /* Default max box width */
+        }
+        .display-box-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--box-gap);
+            padding: 20px;
+            justify-content: flex-start; /* Left justify the boxes */
+            max-width: var(--max-container-width);
+            width: 100%;
+            margin: 0 auto; /* Center the wrapper */
+        }
+        .container {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: var(--box-border-radius);
+            max-width: var(--max-box-width);
+            width: 100%;
+        }
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 1.5s, filter 1.5s;
+            border-radius: var(--box-border-radius);
+        }
+        .inner-box {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background-color: var(--inner-box-bg-color);
+            padding: 20px;
+            transition: height 2s, padding 2s, all 1.5s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: var(--inner-box-border-radius);
+            height: 30px;
+            overflow: hidden;
+        }
+        .inner-box.title-only {
+            height: 30px;
+            transition: none;
+        }
+        .inner-box .title {
+            font-weight: bold;
+            color: var(--title-color);
+            margin: 0;
+            line-height: 30px;
+            padding-left: 5px;
+            font-size: 1em;
+            padding-bottom: 5px;
+        }
+        .inner-box .content {
+            display: none;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: calc(100% - 49px);
+            transition: max-width 1.5s;
+            padding-left: 2px;
+            padding-right: 12px;
+        }
+        .inner-box .arrow {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--arrow-color);
+        }
+        .inner-box .arrow i {
+            font-size: 35px;
+        }
+        .container:hover .background-image,
+        .container.expanded .background-image {
+            transform: scale(1.1);
+            filter: blur(5px);
+        }
+        .container.expanded .inner-box {
+            max-width: calc(100% - 40px);
+            height: auto;
+            padding: 15px 20px;
+        }
+        .container.expanded .inner-box .content {
+            display: block;
+            white-space: normal;
+        }
+        .container.expanded .inner-box .arrow {
+            color: var(--arrow-expanded-color);
+        }
+        .container.title-only:hover .inner-box,
+        .container.title-only.expanded .inner-box {
+            height: 30px;
+            padding: 20px;
+        }
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 44%; /* Max width for tablets */
+                min-width: 350px; /* Minimum width for tablets */
+            }
+            .inner-box .title {
+                font-size: 0.9em;
+            }
+            .inner-box .content {
+                font-size: 0.9em;
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%; /* Max width for mobile devices */
+                min-width: 350px; /* Minimum width for mobile devices */
+            }
+            .inner-box .title {
+                font-size: 1.1em;
+            }
+            .inner-box .content {
+                font-size: 1em;
+            }
+        }
